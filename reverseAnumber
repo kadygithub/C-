@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int reverse(int x) {
+        int newx=0;
+        int flag=1;
+        if (x<0)
+            {
+                flag=-1;
+                x=-1*x;
+            }
+        while(x>0)
+        {
+            
+            int r=x%10;
+            x=(x-r)/10;
+            newx=newx*10+r;
+            
+        }
+        
+        newx=flag*newx;
+        return newx;
+        
+    }
+    
+};
+int main()
+{
+    Solution a;
+    int b=a.reverse(123);
+    cout<<"-123"<<123/10<<endl;
+    return 0;
+}
