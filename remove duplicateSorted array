@@ -1,0 +1,21 @@
+#include <vector>
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int i=0;
+        int n=nums.size();
+        while(i<n-1)
+        {
+            if (nums[i]==nums[i+1])
+            {
+                nums.erase(nums.begin()+i);
+                n=nums.size();
+            }
+            else{
+                i++;
+            }
+                
+        }
+        return nums.size();
+    }
+};
