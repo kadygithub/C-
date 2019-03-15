@@ -1,0 +1,57 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include <vector>
+#include "math.h"
+using namespace std;
+struct Tnode 
+{ 
+    int key; 
+    Tnode *left, *right; 
+}; 
+
+// A utility function to create a new BST node 
+Tnode *newNode(int item) 
+{ 
+   Tnode *temp =  (Tnode *)malloc(sizeof(Tnode)); 
+    temp->key = item; 
+    temp->left = temp->right = NULL; 
+    return temp; 
+}
+
+Tnode * buildTree(vector<int>&nums, int left, int right)
+{
+    int n = right - left + 1;
+    int h= log2(n)+1;
+    int m=pow(2,h-1)-1 + left;
+    cout<< "left:" << left << " right:" << right <<" n:" << n << " h:"<<h << " m:" << m << endl;
+    Tnode * a= newNode(nums[m]);
+    a->left = left <= m-1? buildTree(nums,left,m-1): NULL;
+    a->right =  m+1 <= right? buildTree(nums,m+1,right): NULL;
+    return a;
+}
+void printTree(Tnode* node)
+{
+  if (node)  
+  {
+    
+    
+    printTree(node->right);
+    cout<<node->key;
+    printTree(node->left);
+  }
+}
+
+int main()
+{
+    vector<int>nums{1,2,3,4,5,6};
+    Tnode * root = buildTree(nums,0,5);
+    printTree(root);
+    return 0;
+}
